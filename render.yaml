@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: datastore-nextjs
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    plan: starter
+    region: frankfurt
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        sync: false
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: DATA_MART_API_URL
+        value: https://server-datamart-reseller.onrender.com/api
+      - key: DATA_MART_API_KEY
+        sync: false
+      - key: DATA_MART_API_SECRET
+        sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY
+        sync: false
+      - key: NEXT_PUBLIC_APP_URL
+        sync: false
+
