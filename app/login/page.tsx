@@ -60,10 +60,10 @@ function LoginForm() {
 
         <div className="glass rounded-2xl p-8 backdrop-blur-xl">
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
               Sign in to your account
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
               Welcome back! Please sign in to continue.
             </p>
           </div>
@@ -74,7 +74,7 @@ function LoginForm() {
                 <svg className="h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
                 </svg>
-                <p className="text-sm font-medium text-red-800">{error}</p>
+                <p className="text-sm font-medium text-red-800 dark:text-red-200">{error}</p>
               </div>
             </div>
           )}
@@ -83,7 +83,7 @@ function LoginForm() {
             <div className="relative">
               <label 
                 htmlFor="email" 
-                className={`absolute left-4 transition-all duration-200 ${focused === 'email' || email ? 'top-2 text-xs text-blue-600' : 'top-4 text-sm text-gray-500'}`}
+                className={`absolute left-4 transition-all duration-200 ${focused === 'email' || email ? 'top-2 text-xs text-blue-600 dark:text-blue-400' : 'top-4 text-sm text-gray-500 dark:text-gray-400'}`}
               >
                 Email address
               </label>
@@ -95,14 +95,14 @@ function LoginForm() {
                 onChange={(e) => setEmail(e.target.value)}
                 onFocus={() => setFocused('email')}
                 onBlur={() => setFocused(null)}
-                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               />
             </div>
 
             <div className="relative">
               <label 
                 htmlFor="password" 
-                className={`absolute left-4 transition-all duration-200 ${focused === 'password' || password ? 'top-2 text-xs text-blue-600' : 'top-4 text-sm text-gray-500'}`}
+                className={`absolute left-4 transition-all duration-200 ${focused === 'password' || password ? 'top-2 text-xs text-blue-600 dark:text-blue-400' : 'top-4 text-sm text-gray-500 dark:text-gray-400'}`}
               >
                 Password
               </label>
@@ -114,7 +114,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
                 onFocus={() => setFocused('password')}
                 onBlur={() => setFocused(null)}
-                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               />
             </div>
 
@@ -126,11 +126,11 @@ function LoginForm() {
                   type="checkbox"
                   className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-600"
                 />
-                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700 dark:text-gray-300">
                   Remember me
                 </label>
               </div>
-              <Link href="#" className="text-sm font-medium text-blue-600 hover:text-blue-500">
+              <Link href="#" className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
                 Forgot password?
               </Link>
             </div>
@@ -154,9 +154,9 @@ function LoginForm() {
             </button>
           </form>
 
-          <p className="mt-6 text-center text-sm text-gray-600">
+          <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
             Don&apos;t have an account?{' '}
-            <Link href="/signup" className="font-semibold text-blue-600 hover:text-blue-500">
+            <Link href="/signup" className="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
               Create one
             </Link>
           </p>

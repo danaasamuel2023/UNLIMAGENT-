@@ -29,6 +29,16 @@ body {
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
+/* Input fields dark mode support */
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+  @apply dark:text-white dark:bg-gray-800/50 dark:border-gray-600;
+}
+
 /* Modern gradient backgrounds */
 .gradient-bg {
   @apply bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50;
@@ -44,7 +54,7 @@ body {
 
 /* Glass morphism effect */
 .glass {
-  @apply backdrop-blur-xl bg-white/80 border border-white/20 shadow-xl;
+  @apply backdrop-blur-xl bg-white/80 dark:bg-gray-900/80 border border-white/20 dark:border-gray-700/20 shadow-xl;
 }
 
 /* Smooth animations */

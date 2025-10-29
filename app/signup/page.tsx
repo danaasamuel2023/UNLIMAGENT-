@@ -52,23 +52,17 @@ export default function SignupPage() {
 
       if (error) throw error
 
-      if (data.user && data.user.email_confirmed_at) {
-        router.push('/dashboard')
-        router.refresh()
-      } else if (data.user) {
+      // Automatically sign in after signup (no email verification required)
+      if (data.user) {
         const { error: signInError } = await supabase.auth.signInWithPassword({
           email: formData.email,
           password: formData.password,
         })
         
-        if (!signInError) {
-          router.push('/dashboard')
-          router.refresh()
-        } else {
-          router.push(`/verify-email?email=${encodeURIComponent(formData.email)}`)
-        }
-      } else {
-        router.push(`/verify-email?email=${encodeURIComponent(formData.email)}`)
+        if (signInError) throw signInError
+        
+        router.push('/dashboard')
+        router.refresh()
       }
     } catch (error: any) {
       setError(error.message)
@@ -101,10 +95,10 @@ export default function SignupPage() {
         {/* Main Card */}
         <div className="glass rounded-2xl p-8 backdrop-blur-xl">
           <div className="mb-6">
-            <h2 className="text-3xl font-bold text-gray-900">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
               Create an account
             </h2>
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
               Start your journey with us today
             </p>
           </div>
@@ -116,7 +110,7 @@ export default function SignupPage() {
                 <svg className="h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
                 </svg>
-                <p className="text-sm font-medium text-red-800">{error}</p>
+                <p className="text-sm font-medium text-red-800 dark:text-red-200">{error}</p>
               </div>
             </div>
           )}
@@ -126,7 +120,7 @@ export default function SignupPage() {
             <div className="relative">
               <label 
                 htmlFor="name" 
-                className={`absolute left-4 transition-all duration-200 ${focused === 'name' || formData.name ? 'top-2 text-xs text-blue-600' : 'top-4 text-sm text-gray-500'}`}
+                className={`absolute left-4 transition-all duration-200 ${focused === 'name' || formData.name ? 'top-2 text-xs text-blue-600 dark:text-blue-400' : 'top-4 text-sm text-gray-500 dark:text-gray-400'}`}
               >
                 Full Name
               </label>
@@ -138,7 +132,7 @@ export default function SignupPage() {
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 onFocus={() => setFocused('name')}
                 onBlur={() => setFocused(null)}
-                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               />
             </div>
 
@@ -146,7 +140,7 @@ export default function SignupPage() {
             <div className="relative">
               <label 
                 htmlFor="email" 
-                className={`absolute left-4 transition-all duration-200 ${focused === 'email' || formData.email ? 'top-2 text-xs text-blue-600' : 'top-4 text-sm text-gray-500'}`}
+                className={`absolute left-4 transition-all duration-200 ${focused === 'email' || formData.email ? 'top-2 text-xs text-blue-600 dark:text-blue-400' : 'top-4 text-sm text-gray-500 dark:text-gray-400'}`}
               >
                 Email address
               </label>
@@ -158,25 +152,25 @@ export default function SignupPage() {
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 onFocus={() => setFocused('email')}
                 onBlur={() => setFocused(null)}
-                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               />
             </div>
 
             {/* Account Type */}
             <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="role" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Account Type
               </label>
               <select
                 id="role"
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value as any })}
-                className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               >
                 <option value="customer">Customer</option>
                 <option value="agent">Agent (Store Owner)</option>
               </select>
-              <p className="mt-1 text-xs text-gray-500">
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                 Agents can create and manage their own stores
               </p>
             </div>
@@ -185,7 +179,7 @@ export default function SignupPage() {
             <div className="relative">
               <label 
                 htmlFor="password" 
-                className={`absolute left-4 transition-all duration-200 ${focused === 'password' || formData.password ? 'top-2 text-xs text-blue-600' : 'top-4 text-sm text-gray-500'}`}
+                className={`absolute left-4 transition-all duration-200 ${focused === 'password' || formData.password ? 'top-2 text-xs text-blue-600 dark:text-blue-400' : 'top-4 text-sm text-gray-500 dark:text-gray-400'}`}
               >
                 Password
               </label>
@@ -197,7 +191,7 @@ export default function SignupPage() {
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 onFocus={() => setFocused('password')}
                 onBlur={() => setFocused(null)}
-                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               />
             </div>
 
@@ -205,7 +199,7 @@ export default function SignupPage() {
             <div className="relative">
               <label 
                 htmlFor="confirmPassword" 
-                className={`absolute left-4 transition-all duration-200 ${focused === 'confirmPassword' || formData.confirmPassword ? 'top-2 text-xs text-blue-600' : 'top-4 text-sm text-gray-500'}`}
+                className={`absolute left-4 transition-all duration-200 ${focused === 'confirmPassword' || formData.confirmPassword ? 'top-2 text-xs text-blue-600 dark:text-blue-400' : 'top-4 text-sm text-gray-500 dark:text-gray-400'}`}
               >
                 Confirm Password
               </label>
@@ -217,7 +211,7 @@ export default function SignupPage() {
                 onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
                 onFocus={() => setFocused('confirmPassword')}
                 onBlur={() => setFocused(null)}
-                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50"
+                className="w-full pt-6 pb-2 px-4 rounded-xl border border-gray-200 dark:border-gray-600 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all bg-white/50 dark:bg-gray-800/50 dark:text-white"
               />
             </div>
 
@@ -242,17 +236,13 @@ export default function SignupPage() {
           </form>
 
           {/* Footer */}
-          <p className="mt-6 text-center text-sm text-gray-600">
+          <p className="mt-6 text-center text-sm text-gray-600 dark:text-gray-300">
             Already have an account?{' '}
-            <Link href="/login" className="font-semibold text-blue-600 hover:text-blue-500">
+            <Link href="/login" className="font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-500 dark:hover:text-blue-300">
               Sign in
             </Link>
           </p>
 
-          {/* Dev Mode Notice */}
-          <p className="mt-4 text-center text-xs text-amber-600 bg-amber-50 px-3 py-2 rounded-lg border border-amber-200">
-            ⚠️ Development Mode: Email verification disabled
-          </p>
         </div>
       </div>
     </div>
