@@ -29,7 +29,7 @@ Your code is already at: https://github.com/danaasamuel2023/UNLIMAGENT-.git
 Use these settings:
 
 **Basic Settings:**
-- **Name:** `datastore-unlimagent`
+- **Name:** `unlimagent`
 - **Region:** Frankfurt (or closest to your users)
 - **Branch:** `main`
 - **Root Directory:** `.` (leave empty or enter `.`)
@@ -56,7 +56,7 @@ DATA_MART_API_SECRET=your_datamart_api_secret
 PAYSTACK_SECRET_KEY=your_paystack_secret_key
 NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY=your_paystack_public_key
 
-NEXT_PUBLIC_APP_URL=https://datastore-unlimagent.onrender.com
+NEXT_PUBLIC_APP_URL=https://unlimagent.onrender.com
 ```
 
 **Important:** Replace `your_*` values with your actual credentials.
@@ -65,7 +65,7 @@ NEXT_PUBLIC_APP_URL=https://datastore-unlimagent.onrender.com
 1. Click **"Create Web Service"**
 2. Render will start building your app
 3. Wait 5-10 minutes for the build to complete
-4. Your app will be live at: `https://datastore-unlimagent.onrender.com`
+4. Your app will be live at: `https://unlimagent.onrender.com` ✅ (Already deployed!)
 
 ### Step 8: Post-Deployment Configuration
 
@@ -75,19 +75,19 @@ After deployment, update the `NEXT_PUBLIC_APP_URL` environment variable in Rende
 #### 8.2 Configure Supabase
 1. Go to Supabase Dashboard > Authentication > URL Configuration
 2. Add these URLs:
-   - Site URL: `https://datastore-unlimagent.onrender.com`
+   - Site URL: `https://unlimagent.onrender.com`
    - Redirect URLs:
-     - `https://datastore-unlimagent.onrender.com/auth/callback`
-     - `https://datastore-unlimagent.onrender.com/login`
+     - `https://unlimagent.onrender.com/auth/callback`
+     - `https://unlimagent.onrender.com/login`
 
 #### 8.3 Configure Paystack Webhook
 1. Go to Paystack Dashboard > Settings > API & Webhooks
-2. Add webhook URL: `https://datastore-unlimagent.onrender.com/api/webhooks/paystack`
+2. Add webhook URL: `https://unlimagent.onrender.com/api/webhooks/paystack`
 
 #### 8.4 Update Supabase CORS Settings
 1. Go to Supabase Dashboard > Settings > API
 2. Add your Render domain to allowed origins:
-   - `https://datastore-unlimagent.onrender.com`
+   - `https://unlimagent.onrender.com`
 
 ## Render Configuration Details
 
