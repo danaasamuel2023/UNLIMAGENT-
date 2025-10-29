@@ -1,0 +1,13 @@
+.env.local
+.env*.local
+node_modules
+.next
+.git
+.vscode
+*.log
+*.md
+backend/
+scripts/
+supabase/migrations/
+*.sql
+

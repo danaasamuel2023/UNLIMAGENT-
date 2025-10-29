@@ -1,0 +1,19 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": "@supabase_url",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@supabase_anon_key",
+    "SUPABASE_SERVICE_ROLE_KEY": "@supabase_service_role_key",
+    "DATA_MART_API_URL": "@datamart_api_url",
+    "DATA_MART_API_KEY": "@datamart_api_key",
+    "DATA_MART_API_SECRET": "@datamart_api_secret",
+    "PAYSTACK_SECRET_KEY": "@paystack_secret_key",
+    "NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY": "@paystack_public_key",
+    "NEXT_PUBLIC_APP_URL": "@app_url"
+  }
+}
+
